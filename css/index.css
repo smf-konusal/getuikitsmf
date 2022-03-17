@@ -4221,7 +4221,6 @@ div.sceditor-container:not(.sceditor-maximize) {
 img.theme_thumbnail {
 	max-width: 250px;
 }
-@import "../uikit/dist/css/uikit.css";
 
 #lang_main_files_list .name, #member_list .email, #approve_list .email {
 	word-break: break-word;
