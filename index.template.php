@@ -74,8 +74,6 @@ function template_init()
 	// Add the identifier as an array key. IE array('smf_script'); Some external files might not add identifiers, on those cases SMF uses its filename as reference.
 	if (!isset($settings['disable_files']))
 		$settings['disable_files'] = array();
-
-	$settings['theme_variants'] = array('uikit');
 }
 
 /**
@@ -120,13 +118,15 @@ function template_html_above()
 			'integrate_pre_css_output', 'integrate_pre_javascript_output' for a single file.
 	*/
 
-	//$getuikitsmf_yol_Css = $settings['theme_dir'].'/uikit/dist/css/uikit.css';
-	//echo $getuikitsmf_yol_Css;
-	//loadCSSFile($getuikitsmf_yol_Css);
-
+	
 	// load in any css from mods or themes so they can overwrite if wanted
-	template_css();
+	$getuikitsmf_yol_Css = $settings['theme_url'].'/uikit/dist/css/uikit.css';
+	loadCSSFile($getuikitsmf_yol_Css, array('external' =>true, 'minimize' => true));
 
+	template_css();
+	
+	$getuikitsmf_yol_js = $settings['theme_url'].'/uikit/dist/js/uikit.min.js';
+	loadJavascriptFile($getuikitsmf_yol_js, array('external' =>true, 'minimize' => true));
 
 	// load in any javascript files from mods and themes
 	template_javascript();
@@ -556,15 +556,16 @@ function template_menu()
 {
 	global $context;
 
-	echo '
-					<ul class="dropmenu menu_nav">';
+	echo '<nav class="uk-navbar-container" uk-navbar>
+    			<div class="uk-navbar-left">
+					<ul class="uk-navbar-nav">';
 
 	// Note: Menu markup has been cleaned up to remove unnecessary spans and classes.
 	foreach ($context['menu_buttons'] as $act => $button)
 	{
 		echo '
-						<li class="button_', $act, '', !empty($button['sub_buttons']) ? ' subsections"' : '"', '>
-							<a', $button['active_button'] ? ' class="active"' : '', ' href="', $button['href'], '"', isset($button['target']) ? ' target="' . $button['target'] . '"' : '', isset($button['onclick']) ? ' onclick="' . $button['onclick'] . '"' : '', '>
+						<li class="button_', $act, '', !empty($button['sub_buttons']) ? ' uk-parent"' : '"', '>
+							<a', $button['active_button'] ? ' class="uk-active"' : '', ' href="', $button['href'], '"', isset($button['target']) ? ' target="' . $button['target'] . '"' : '', isset($button['onclick']) ? ' onclick="' . $button['onclick'] . '"' : '', '>
 								', $button['icon'], '<span class="textmenu">', $button['title'], !empty($button['amt']) ? ' <span class="amt">' . $button['amt'] . '</span>' : '', '</span>
 							</a>';
 
@@ -572,12 +573,13 @@ function template_menu()
 		if (!empty($button['sub_buttons']))
 		{
 			echo '
-							<ul>';
+					<div class="uk-navbar-dropdown">
+						<ul class="uk-nav uk-navbar-dropdown-nav">';
 
 			foreach ($button['sub_buttons'] as $childbutton)
 			{
 				echo '
-								<li', !empty($childbutton['sub_buttons']) ? ' class="subsections"' : '', '>
+								<li', !empty($childbutton['sub_buttons']) ? ' class=" uk-parent"' : '', '>
 									<a href="', $childbutton['href'], '"', isset($childbutton['target']) ? ' target="' . $childbutton['target'] . '"' : '', isset($childbutton['onclick']) ? ' onclick="' . $childbutton['onclick'] . '"' : '', '>
 										', $childbutton['title'], !empty($childbutton['amt']) ? ' <span class="amt">' . $childbutton['amt'] . '</span>' : '', '
 									</a>';
@@ -585,7 +587,8 @@ function template_menu()
 				if (!empty($childbutton['sub_buttons']))
 				{
 					echo '
-									<ul>';
+							<div class="uk-navbar-dropdown">
+								<ul class="uk-nav uk-navbar-dropdown-nav">';
 
 					foreach ($childbutton['sub_buttons'] as $grandchildbutton)
 						echo '
@@ -596,21 +599,25 @@ function template_menu()
 										</li>';
 
 					echo '
-									</ul>';
+									</ul>
+								</div>';
 				}
 
 				echo '
 								</li>';
 			}
 			echo '
-							</ul>';
+							</ul>
+						</div>';
 		}
 		echo '
 						</li>';
 	}
 
 	echo '
-					</ul><!-- .menu_nav -->';
+					</ul><!-- .menu_nav -->
+				</div>
+			</nav>';
 }
 
 /**
