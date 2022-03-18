@@ -126,7 +126,9 @@ function template_html_above()
 	template_css();
 	
 	$getuikitsmf_yol_js = $settings['theme_url'].'/uikit/dist/js/uikit.min.js';
+	$getuikitsmf_yol_js_icon = $settings['theme_url'].'/uikit/dist/js/uikit-icon.min.js';
 	loadJavascriptFile($getuikitsmf_yol_js, array('external' =>true, 'minimize' => true));
+	loadJavascriptFile($getuikitsmf_yol_js_icon, array('external' =>true, 'minimize' => true));
 
 	// load in any javascript files from mods and themes
 	template_javascript();
