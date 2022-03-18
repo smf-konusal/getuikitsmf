@@ -210,20 +210,15 @@ function template_body_above()
 	// Show the menu here, according to the menu sub template, followed by the navigation tree.
 	// Load mobile menu here
 	echo '
-		<a class="mobile_user_menu">
-			<span class="menu_icon"></span>
-			<span class="text_menu">', $txt['mobile_user_menu'], '</span>
-		</a>
-		<div id="main_menu">
-			<div id="mobile_user_menu" class="popup_container">
-				<div class="popup_window description">
-					<div class="popup_heading">', $txt['mobile_user_menu'], '
-						<a href="javascript:void(0);" class="main_icons hide_popup"></a>
-					</div>
-					', template_menu(), '
+			<nav class="uk-navbar-container" uk-navbar uk-sticky>
+				<div class="uk-navbar-left">
+					<a class="uk-navbar-item uk-logo" href="#"><span class="uk-icon" uk-icon="icon: uikit; ratio: 3;"></span></a>
+					<ul class="uk-navbar-nav uk-visible@s">
+					', template_menu(), '		
+					</ul>
+					<a href="#" class="uk-navbar-toggle uk-hidden@s" uk-navbar-toggle-icon uk-toggle="target: #sidenav"></a>
 				</div>
-			</div>
-		</div>';
+			</nav>';
 
 	// Wrapper div now echoes permanently for better layout options. h1 a is now target for "Go up" links.
 	echo '
@@ -490,6 +485,13 @@ function template_html_below()
 	template_javascript(true);
 
 	echo '
+	<div id="sidenav" uk-offcanvas="flip: true" class="uk-offcanvas">
+		<div class="uk-offcanvas-bar">
+			<ul class="uk-nav">
+			', template_menu(), '
+			</ul>
+		</div>
+	</div>
 </body>
 </html>';
 }
@@ -558,11 +560,6 @@ function template_menu()
 {
 	global $context;
 
-	echo '<nav class="uk-navbar-container" uk-navbar uk-sticky>
-    			<div class="uk-navbar-left">
-    				<a class="uk-navbar-item uk-logo" href="#"><span class="uk-icon" uk-icon="icon: uikit; ratio: 3;"></span></a>
-					<ul class="uk-navbar-nav">';
-
 	// Note: Menu markup has been cleaned up to remove unnecessary spans and classes.
 	foreach ($context['menu_buttons'] as $act => $button)
 	{
@@ -617,10 +614,7 @@ function template_menu()
 						</li>';
 	}
 
-	echo '
-					</ul><!-- .menu_nav -->
-				</div>
-			</nav>';
+	
 }
 
 /**
