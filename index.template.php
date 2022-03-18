@@ -207,6 +207,24 @@ function template_body_above()
 {
 	global $context, $settings, $scripturl, $txt, $modSettings, $maintenance;
 
+	// Show the menu here, according to the menu sub template, followed by the navigation tree.
+	// Load mobile menu here
+	echo '
+		<a class="mobile_user_menu">
+			<span class="menu_icon"></span>
+			<span class="text_menu">', $txt['mobile_user_menu'], '</span>
+		</a>
+		<div id="main_menu">
+			<div id="mobile_user_menu" class="popup_container">
+				<div class="popup_window description">
+					<div class="popup_heading">', $txt['mobile_user_menu'], '
+						<a href="javascript:void(0);" class="main_icons hide_popup"></a>
+					</div>
+					', template_menu(), '
+				</div>
+			</div>
+		</div>';
+
 	// Wrapper div now echoes permanently for better layout options. h1 a is now target for "Go up" links.
 	echo '
 	<div id="top_section">
@@ -415,24 +433,6 @@ function template_body_above()
 	echo '
 				</div>';
 
-	// Show the menu here, according to the menu sub template, followed by the navigation tree.
-	// Load mobile menu here
-	echo '
-				<a class="mobile_user_menu">
-					<span class="menu_icon"></span>
-					<span class="text_menu">', $txt['mobile_user_menu'], '</span>
-				</a>
-				<div id="main_menu">
-					<div id="mobile_user_menu" class="popup_container">
-						<div class="popup_window description">
-							<div class="popup_heading">', $txt['mobile_user_menu'], '
-								<a href="javascript:void(0);" class="main_icons hide_popup"></a>
-							</div>
-							', template_menu(), '
-						</div>
-					</div>
-				</div>';
-
 	theme_linktree();
 
 	echo '
@@ -558,7 +558,7 @@ function template_menu()
 {
 	global $context;
 
-	echo '<nav class="uk-navbar-container" uk-navbar>
+	echo '<nav class="uk-navbar-container" uk-navbar uk-sticky>
     			<div class="uk-navbar-left">
     				<a class="uk-navbar-item uk-logo" href="#"><span class="uk-icon" uk-icon="icon: uikit; ratio: 3;"></span></a>
 					<ul class="uk-navbar-nav">';

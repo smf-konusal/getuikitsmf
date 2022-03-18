@@ -23784,6 +23784,27 @@ body {
   line-height: inherit !important;
   color: inherit !important;
 }
+:root {
+  --global-color: #666;
+  --global-emphasis-color: #333;
+  --global-muted-color: #999;
+  --global-link-color: #1e87f0;
+  --global-link-hover-color: #0f6ecd;
+  --global-inverse-color: #fff;
+  --global-background: #fff;
+  --global-muted-background: #f8f8f8;
+  --global-primary-background: #1e87f0;
+  --global-secondary-background: #222;
+  --global-success-background: #32d296;
+  --global-warning-background: #faa05a;
+  --global-danger-background: #f0506e;
+  --global-border-width: 1px;
+  --global-border: #e5e5e5;
+  --global-small-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --global-medium-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  --global-large-box-shadow: 0 14px 25px rgba(0, 0, 0, 0.16);
+  --global-xlarge-box-shadow: 0 28px 50px rgba(0, 0, 0, 0.16);
+}
 .button {
   /* 1 */
   /* 2 */
@@ -23847,7 +23868,8 @@ div.cat_bar,
   background-color: #4b3c3b;
 }
 .up_contain,
-.roundframe {
+.roundframe,
+#top_section {
   background-color: #1e87f0;
   background-color: #e6d6d3;
 }
@@ -23869,8 +23891,7 @@ body,
   color: #4e4241;
   box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.03), 8px 28px 56px rgba(0, 0, 0, 0.05);
 }
-.windowbg,
-.top_menu {
+.windowbg {
   transition: box-shadow 0.1s ease-in-out;
   position: relative;
   box-sizing: border-box;
@@ -23897,4 +23918,7 @@ body,
 }
 #top_subject {
   overflow: hidden;
+}
+hr {
+  line-height: 0;
 }
