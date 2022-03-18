@@ -1,9 +1,5 @@
 .button {
 	.uk-button();
-
-	&:hover{
-		/*.uk-button:hover();*/
-	}
 	&.active{
 		.uk-button.uk-active();
 	}
@@ -17,7 +13,7 @@
 div.cat_bar, #footer {
 	.uk-background-secondary();
 }
-.up_contain{
+.up_contain, .roundframe{
 	.uk-background-primary();
 }
 body, #wrapper{
@@ -27,4 +23,18 @@ body, #wrapper{
 #wrapper{
 	.uk-card();
 	.uk-card-default();
+}
+.windowbg, .top_menu{
+	.uk-card();
+	.uk-card-primary();
+}
+.windowbg:nth-of-type(2n), .bg.even{
+	.uk-card-default();
+}
+
+.navigate_section ul {
+	.uk-breadcrumb();
+}
+#top_subject{
+	.uk-heading-line();
 }

@@ -126,7 +126,7 @@ function template_html_above()
 	template_css();
 	
 	$getuikitsmf_yol_js = $settings['theme_url'].'/uikit/dist/js/uikit.min.js';
-	$getuikitsmf_yol_js_icon = $settings['theme_url'].'/uikit/dist/js/uikit-icon.min.js';
+	$getuikitsmf_yol_js_icon = $settings['theme_url'].'/uikit/dist/js/uikit-icons.min.js';
 	loadJavascriptFile($getuikitsmf_yol_js, array('external' =>true, 'minimize' => true));
 	loadJavascriptFile($getuikitsmf_yol_js_icon, array('external' =>true, 'minimize' => true));
 
@@ -560,6 +560,7 @@ function template_menu()
 
 	echo '<nav class="uk-navbar-container" uk-navbar>
     			<div class="uk-navbar-left">
+    				<a class="uk-navbar-item uk-logo" href="#"><span class="uk-icon" uk-icon="icon: uikit; ratio: 3;"></span></a>
 					<ul class="uk-navbar-nav">';
 
 	// Note: Menu markup has been cleaned up to remove unnecessary spans and classes.
