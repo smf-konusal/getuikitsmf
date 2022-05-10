@@ -7,7 +7,7 @@
  * @copyright 2022 Simple Machines and individual contributors
  * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
- * @version 2.1.0
+ * @version 2.1.2
  */
 
 /*	This template is, perhaps, the most important template in the theme. It
@@ -299,13 +299,18 @@ function template_body_above()
 						<span class="main_icons login"></span>
 						<span class="textmenu">', $txt['login'], '</span>
 					</a>
-				</li>
+				</li>';
+
+			if ($context['can_register'])
+				echo '
 				<li class="button_signup">
 					<a href="', $scripturl, '?action=signup" class="', $context['current_action'] == 'signup' ? 'active' : 'open','">
 						<span class="main_icons regcenter"></span>
 						<span class="textmenu">', $txt['register'], '</span>
 					</a>
-				</li>
+				</li>';
+
+			echo '
 			</ul>';
 		}
 	}
